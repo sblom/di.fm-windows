@@ -617,7 +617,13 @@ namespace DI.FM.ViewModel
         {
             foreach (var item in AllChannels)
             {
-                var jChannel = token.FirstOrDefault((e) => e.First.Value<int>("channel_id") == item.ID).First;
+                var jChannel = token.FirstOrDefault((e) => e.First.Value<int>("channel_id") == item.ID);
+                if (jChannel == null)
+                {
+                    jChannel = null;
+                }
+                
+                jChannel = jChannel.First;
 
                 if (jChannel != null)
                 {
